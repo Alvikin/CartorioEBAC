@@ -11,8 +11,9 @@ int registro(){  //Função responsável pelo cadastro dos usuários no sistema
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
+	int opcao = 0;
 	//fim da criação de vriáveis
-	
+			
 	printf("Digite o CPF a ser cadastrado: "); //coletando informações do usuário
 	scanf("%s", cpf);  
 	
@@ -46,9 +47,28 @@ int registro(){  //Função responsável pelo cadastro dos usuários no sistema
 	file = fopen(arquivo, "a");
 	fprintf(file, cargo);
 	fclose(file);
-			
-	system("pause");
+	
+	system("cls");
+	
+	printf("Deseja cadastrar outro usuário ? \n");
+	printf("1 - sim\n2 - não\n");
+	scanf("%d", &opcao);
+	system("cls");
+
+	switch(opcao){
 		
+		case 1:
+		registro();
+		break;
+		
+		case 2:
+		break;
+		
+		default:
+		printf("Essa opção não está disponível\n");
+		system("pause");
+	}
+			
 }
 
 int consulta (){ //função para a consulta de usuários no sistema
@@ -59,6 +79,7 @@ int consulta (){ //função para a consulta de usuários no sistema
 	char cpf[40];
 	char conteudo[200];
 	char *token;  //cria um ponteiro do tipo char com o nome de token
+	int opcao = 0;
 	//fim da criação de vriáveis
 	
 	printf("Digite o CPF a ser consultado: "); 
@@ -95,7 +116,26 @@ int consulta (){ //função para a consulta de usuários no sistema
 	printf("\n");
 	fclose(file);   // fecha arquivo
 	system("pause");
+	system("cls");
 	
+	printf("Deseja consultar outro usuário ? \n");
+	printf("1 - sim\n2 - não\n");
+	scanf("%d", &opcao);
+	system("cls");
+
+	switch(opcao){
+		
+		case 1:
+		consulta();
+		break;
+		
+		case 2:
+		break;
+		
+		default:
+		printf("Essa opção não está disponível\n");
+		system("pause");
+	}			
 }
 
 int deletar(){ //função para deletar usuários do sistema
