@@ -142,11 +142,39 @@ int deletar(){ //função para deletar usuários do sistema
 	
 	//inicio da criação de variáveis
 	char cpf[40];
+	int opcao = 0;
 	//fim da criação de variáveis
 	
-	printf("Digite o CPF a ser deletado: ");
-	scanf("%s", cpf);
+	printf("Digite o CPF a ser deletado: "); 
+	scanf("%s", cpf); 
+	system("cls"); 
 	
+	printf("Tem certeza que deseja deletar o cpf: %s", cpf); 
+	printf(" ? \n");
+	printf("1 - sim\n2 - não\n"); 
+	scanf("%d", &opcao);
+	
+	switch(opcao){
+		
+		case 1:
+		system("cls");
+		break;
+		
+		case 2:
+		system("cls");
+		deletar();
+		return;		
+		break;
+		
+		default:
+		system("cls");
+		printf("Essa opção não está disponível\n");
+		system("pause");
+		system("cls");
+		deletar();
+		return;
+	}			
+		
 	FILE *file;   
 	file = fopen(cpf, "r"); // abre e lê o arquivo
 	fclose(file);   // fecha o arquivo
@@ -159,11 +187,11 @@ int deletar(){ //função para deletar usuários do sistema
 		{
 		if(remove(cpf) == 0) //tenta deletar o arquivo cpf
 			{
-			printf("\nUsuário deletado com sucesso !\n"); //sucesso
+			printf("\nUsuário deletado com sucesso !\n\n"); //sucesso
 			system("pause");
 			}else
 				{
-					printf("\nErro ao deletar o usuário !\n"); //erro
+					printf("\nErro ao deletar o usuário !\n\n"); //erro
 					system("pause");
 				}
 				
@@ -172,54 +200,76 @@ int deletar(){ //função para deletar usuários do sistema
 
 int main (){ //função "main"
 	
+	setlocale(LC_ALL,"Portuguese"); //definindo linguagem
 	// inicio da criação de variáveis
 	int opcao = 0; 
 	int laco = 1;
+	int laco2 = 1;
+	char senhadigitada[10] = "a";
+	int comparacao;        //variável para a comparação de strings
 	// fim da criação de variáveis
 	
-	for(laco = 1; laco = 1;){ //laço do menu
-		
-		system("cls"); // Limpa a tela
-			
-		setlocale(LC_ALL,"Portuguese"); //definindo linguagem
+	for(laco2 = 1; laco2 = 1;) {
 	
-		printf("### Cartório da EBAC ### \n\n");  //Início do menu
-		printf("Escolha a opção desejada do menu: \n\n");
-		printf("\t1 - Registrar nomes\n");
-		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Deletar nomes\n");  // fim do menu
-		printf("\t4 - Sair do sistema\n\n");
-		printf("Opção: ");
-	
-		scanf("%d", &opcao); //coletando opção desejada pelo usuário
-	
-		system("cls");
+		printf("### Cartório da EBAC ### \n\n");
+		printf("Login de administrador !\n\nDigite a sua senha: ");
+		scanf("%s",senhadigitada);
 		
-		switch(opcao){ // inicio da seleção do menu
+		comparacao = strcmp(senhadigitada, "admin");   // strcmp é o comando para comparaçao de strings
+	
+		if(comparacao == 0){ //caso a senha digitada seja admin
 		
-			case 1:
-			registro(); // chamada de funções
-			break;
+			for(laco = 1; laco = 1;){ //laço do menu
+				
+				system("cls"); // Limpa a tela
+					
+				//setlocale(LC_ALL,"Portuguese"); //definindo linguagem
 			
-			case 2:
-			consulta();
-			break;
+				printf("### Cartório da EBAC ### \n\n");  //Início do menu
+				printf("Escolha a opção desejada do menu: \n\n");
+				printf("\t1 - Registrar nomes\n");
+				printf("\t2 - Consultar nomes\n");
+				printf("\t3 - Deletar nomes\n");  // fim do menu
+				printf("\t4 - Sair do sistema\n\n");
+				printf("Opção: ");
 			
-			case 3:
-			deletar();
-			break;
+				scanf("%d", &opcao); //coletando opção desejada pelo usuário
 			
-			case 4:
-			printf("Obrigado por utilizar o sistema !\n");
-			return 0;
-			break;
-			
-			default: // essa é uma opção que não satisfaz nenhum dos casos
-			printf("Essa opção não está disponível\n");
+				system("cls");
+				
+				switch(opcao){ // inicio da seleção do menu
+				
+					case 1:
+					registro(); // chamada de funções
+					break;
+					
+					case 2:
+					consulta();
+					break;
+					
+					case 3:
+					deletar();
+					break;
+					
+					case 4:
+					printf("Obrigado por utilizar o sistema !\n");
+					return 0;
+					break;
+					
+					default: // essa é uma opção que não satisfaz nenhum dos casos
+					printf("Essa opção não está disponível\n");
+					system("pause");
+				
+				} // fim da seleção do menu
+					
+			}
+		//printf("Esse software é de livre uso\n");
+		}
+		else{
+			system("cls");
+			printf("Senha incorreta !\n\n");
 			system("pause");
-			
-		} // fim da seleção do menu
-			
+			system("cls");
+			}
 	}
-	//printf("Esse software é de livre uso\n");
 }
