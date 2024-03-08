@@ -151,7 +151,7 @@ int deletar(){ //função para deletar usuários do sistema
 	
 	printf("Tem certeza que deseja deletar o cpf: %s", cpf); 
 	printf(" ? \n");
-	printf("1 - sim\n2 - não\n"); 
+	printf("1 - sim\n2 - não\n\n\n3 - voltar ao menu\n"); 
 	scanf("%d", &opcao);
 	
 	switch(opcao){
@@ -166,6 +166,11 @@ int deletar(){ //função para deletar usuários do sistema
 		return;		
 		break;
 		
+		case 3:
+		system("cls");
+		return;
+		break;
+		
 		default:
 		system("cls");
 		printf("Essa opção não está disponível\n");
@@ -173,6 +178,7 @@ int deletar(){ //função para deletar usuários do sistema
 		system("cls");
 		deletar();
 		return;
+		break;
 	}			
 		
 	FILE *file;   
